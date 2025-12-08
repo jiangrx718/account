@@ -5,8 +5,6 @@ import (
 	"account/gopkg/cron"
 	"account/gopkg/gorms"
 	"account/gopkg/log"
-	"account/gopkg/minio"
-	"account/gopkg/storage"
 	"account/gopkg/viper"
 	"account/internal/g"
 
@@ -28,14 +26,6 @@ func InitConfigFromConfigPath(configPath, envPath string) error {
 	}
 	// 初始化orm
 	if err := gorms.InitGenFromViper(g.SetDefault); err != nil {
-		return err
-	}
-	// s3对象存储
-	if err := storage.Init(); err != nil {
-		return err
-	}
-	// minio存储
-	if err := minio.Init(); err != nil {
 		return err
 	}
 	// 初始化Redis

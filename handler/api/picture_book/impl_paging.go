@@ -1,13 +1,13 @@
-package demo
+package picture_book
 
 import (
 	"account/gopkg/gins"
-	"account/handler/api/demo/request"
+	"account/handler/api/picture_book/request"
 
 	"github.com/gin-gonic/gin"
 )
 
-// PagingDemo 列表-分页
+// PagingPictureBook 列表-分页
 // @Tags APi:示例
 // @Summary 列表-分页
 // @Description 列表-分页
@@ -15,15 +15,15 @@ import (
 // @Param param query request.PagingDemoParams true "请求参数"
 // @Success 200 {object} services.BaseResult{data=view.Paging[view.WritingKnowledge]{}} "操作成功"
 // @Router /api/demo/list [get]
-func (h *Handler) PagingDemo(ctx *gin.Context) {
-	var req request.PagingDemoParams
+func (h *Handler) PagingPictureBook(ctx *gin.Context) {
+	var req request.PagingParams
 
 	if err := ctx.Bind(&req); err != nil {
 		gins.BadRequest(ctx, err)
 		return
 	}
 
-	res, err := h.demoService.PagingDemo(ctx, req.Page)
+	res, err := h.pictureBookService.PagingPictureBook(ctx, req.Page)
 	if err != nil {
 		gins.ServerError(ctx, err)
 		return

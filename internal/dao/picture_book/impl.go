@@ -1,4 +1,4 @@
-package demo
+package picture_book
 
 import (
 	"account/gopkg/gorms"

@@ -17,7 +17,6 @@ import (
 
 var (
 	Q                    = new(Query)
-	Demo                 *demo
 	SPictureBook         *sPictureBook
 	SPictureBookCategory *sPictureBookCategory
 	SPictureBookItem     *sPictureBookItem
@@ -25,7 +24,6 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
-	Demo = &Q.Demo
 	SPictureBook = &Q.SPictureBook
 	SPictureBookCategory = &Q.SPictureBookCategory
 	SPictureBookItem = &Q.SPictureBookItem
@@ -34,7 +32,6 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                   db,
-		Demo:                 newDemo(db, opts...),
 		SPictureBook:         newSPictureBook(db, opts...),
 		SPictureBookCategory: newSPictureBookCategory(db, opts...),
 		SPictureBookItem:     newSPictureBookItem(db, opts...),
@@ -44,7 +41,6 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 type Query struct {
 	db *gorm.DB
 
-	Demo                 demo
 	SPictureBook         sPictureBook
 	SPictureBookCategory sPictureBookCategory
 	SPictureBookItem     sPictureBookItem
@@ -55,7 +51,6 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                   db,
-		Demo:                 q.Demo.clone(db),
 		SPictureBook:         q.SPictureBook.clone(db),
 		SPictureBookCategory: q.SPictureBookCategory.clone(db),
 		SPictureBookItem:     q.SPictureBookItem.clone(db),
@@ -73,7 +68,6 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                   db,
-		Demo:                 q.Demo.replaceDB(db),
 		SPictureBook:         q.SPictureBook.replaceDB(db),
 		SPictureBookCategory: q.SPictureBookCategory.replaceDB(db),
 		SPictureBookItem:     q.SPictureBookItem.replaceDB(db),
@@ -81,7 +75,6 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
-	Demo                 IDemoDo
 	SPictureBook         ISPictureBookDo
 	SPictureBookCategory ISPictureBookCategoryDo
 	SPictureBookItem     ISPictureBookItemDo
@@ -89,7 +82,6 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		Demo:                 q.Demo.WithContext(ctx),
 		SPictureBook:         q.SPictureBook.WithContext(ctx),
 		SPictureBookCategory: q.SPictureBookCategory.WithContext(ctx),
 		SPictureBookItem:     q.SPictureBookItem.WithContext(ctx),

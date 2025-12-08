@@ -2,7 +2,8 @@ package api
 
 import (
 	"account/gopkg/gins"
-	"account/handler/api/demo"
+	"account/handler/api/picture_book"
+	"account/handler/api/picture_book_category"
 	"account/handler/middleware"
 
 	"github.com/gin-contrib/cors"
@@ -27,7 +28,8 @@ func (h *Handler) RegisterRoutes() {
 
 	g := h.engine.Group("/api", middleware.RequestCapture())
 	handlers := []gins.Handler{
-		demo.NewHandler(g),
+		picture_book.NewHandler(g),
+		picture_book_category.NewHandler(g),
 	}
 
 	for _, handler := range handlers {
