@@ -2,15 +2,15 @@ package picture_book
 
 import (
 	"account/gopkg/gorms"
-	"account/internal/g"
+	"account/internal/dao"
 	"account/internal/model"
 	"context"
 )
 
 func (d *Dao) Pagination(ctx context.Context, page gorms.Page) (*gorms.Paging[*model.SPictureBook], error) {
 	paging, err := gorms.PaginationQuery(
-		g.SPictureBook.Order(
-			g.SPictureBook.CreatedAt.Desc(),
+		dao.SPictureBook.Order(
+			dao.SPictureBook.CreatedAt.Desc(),
 		).FindByPage, gorms.Page{
 			PageIndex: page.PageIndex,
 			PageSize:  page.PageSize,

@@ -6,7 +6,7 @@ import (
 	"account/gopkg/gorms"
 	"account/gopkg/log"
 	"account/gopkg/viper"
-	"account/internal/g"
+	"account/internal/dao"
 
 	"github.com/urfave/cli/v2"
 )
@@ -25,7 +25,7 @@ func InitConfigFromConfigPath(configPath, envPath string) error {
 		return err
 	}
 	// 初始化orm
-	if err := gorms.InitGenFromViper(g.SetDefault); err != nil {
+	if err := gorms.InitGenFromViper(dao.SetDefault); err != nil {
 		return err
 	}
 	// 初始化Redis
