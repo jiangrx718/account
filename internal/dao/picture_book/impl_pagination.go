@@ -10,7 +10,7 @@ import (
 func (d *Dao) Pagination(ctx context.Context, page gorms.Page) (*gorms.Paging[*model.SPictureBook], error) {
 	paging, err := gorms.PaginationQuery(
 		dao.SPictureBook.Order(
-			dao.SPictureBook.CreatedAt.Desc(),
+			dao.SPictureBook.Position.Desc(),
 		).FindByPage, gorms.Page{
 			PageIndex: page.PageIndex,
 			PageSize:  page.PageSize,

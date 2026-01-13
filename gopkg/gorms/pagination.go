@@ -18,6 +18,12 @@ func FindByPage[T any](findByPage FindByPageFunc[T], page Page) ([]*T, int, erro
 }
 
 func ComputeOffsetLimit(page Page) (int, int) {
+	if page.PageIndex < 1 {
+		page.PageIndex = 1
+	}
+	if page.PageSize < 1 {
+		page.PageSize = 100
+	}
 	return (page.PageIndex - 1) * page.PageSize, page.PageSize
 }
 
