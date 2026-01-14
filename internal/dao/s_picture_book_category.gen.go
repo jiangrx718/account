@@ -29,7 +29,7 @@ func newSPictureBookCategory(db *gorm.DB, opts ...gen.DOOption) sPictureBookCate
 	tableName := _sPictureBookCategory.sPictureBookCategoryDo.TableName()
 	_sPictureBookCategory.ALL = field.NewAsterisk(tableName)
 	_sPictureBookCategory.Id = field.NewUint64(tableName, "id")
-	_sPictureBookCategory.CategoryId = field.NewInt(tableName, "category_id")
+	_sPictureBookCategory.CategoryId = field.NewString(tableName, "category_id")
 	_sPictureBookCategory.CategoryName = field.NewString(tableName, "category_name")
 	_sPictureBookCategory.Sort = field.NewInt(tableName, "sort")
 	_sPictureBookCategory.Type = field.NewInt(tableName, "type")
@@ -47,7 +47,7 @@ type sPictureBookCategory struct {
 
 	ALL          field.Asterisk
 	Id           field.Uint64 // 主键id
-	CategoryId   field.Int    // 栏目ID
+	CategoryId   field.String // 栏目ID
 	CategoryName field.String // 栏目名称
 	Sort         field.Int    // 排序,倒序
 	Type         field.Int    // 1中文绘本,2英文绘本,3古诗绘本,4英语词汇
@@ -71,7 +71,7 @@ func (s sPictureBookCategory) As(alias string) *sPictureBookCategory {
 func (s *sPictureBookCategory) updateTableName(table string) *sPictureBookCategory {
 	s.ALL = field.NewAsterisk(table)
 	s.Id = field.NewUint64(table, "id")
-	s.CategoryId = field.NewInt(table, "category_id")
+	s.CategoryId = field.NewString(table, "category_id")
 	s.CategoryName = field.NewString(table, "category_name")
 	s.Sort = field.NewInt(table, "sort")
 	s.Type = field.NewInt(table, "type")

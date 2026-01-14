@@ -4,7 +4,6 @@ import (
 	"account/gopkg/gins"
 	"account/handler/api/picture_book"
 	"account/handler/api/picture_book_category"
-	"account/handler/api/sync"
 	"account/handler/middleware"
 
 	"github.com/gin-contrib/cors"
@@ -31,7 +30,6 @@ func (h *Handler) RegisterRoutes() {
 	handlers := []gins.Handler{
 		picture_book.NewHandler(g),
 		picture_book_category.NewHandler(g),
-		sync.NewHandler(g),
 	}
 
 	for _, handler := range handlers {

@@ -32,7 +32,7 @@ func newSPictureBook(db *gorm.DB, opts ...gen.DOOption) sPictureBook {
 	_sPictureBook.BookId = field.NewString(tableName, "book_id")
 	_sPictureBook.Title = field.NewString(tableName, "title")
 	_sPictureBook.Icon = field.NewString(tableName, "icon")
-	_sPictureBook.CategoryId = field.NewInt(tableName, "category_id")
+	_sPictureBook.CategoryId = field.NewString(tableName, "category_id")
 	_sPictureBook.Type = field.NewInt(tableName, "type")
 	_sPictureBook.Status = field.NewString(tableName, "status")
 	_sPictureBook.Position = field.NewInt(tableName, "position")
@@ -52,7 +52,7 @@ type sPictureBook struct {
 	BookId     field.String // 绘本id
 	Title      field.String // 绘本标题
 	Icon       field.String // 绘本封面
-	CategoryId field.Int    // 绘本所属栏目
+	CategoryId field.String // 绘本所属栏目
 	Type       field.Int    // 1中文绘本,2英文绘本,3古诗绘本,4英语词汇
 	Status     field.String // 状态,on启用,off禁用
 	Position   field.Int    // 排序位置
@@ -78,7 +78,7 @@ func (s *sPictureBook) updateTableName(table string) *sPictureBook {
 	s.BookId = field.NewString(table, "book_id")
 	s.Title = field.NewString(table, "title")
 	s.Icon = field.NewString(table, "icon")
-	s.CategoryId = field.NewInt(table, "category_id")
+	s.CategoryId = field.NewString(table, "category_id")
 	s.Type = field.NewInt(table, "type")
 	s.Status = field.NewString(table, "status")
 	s.Position = field.NewInt(table, "position")

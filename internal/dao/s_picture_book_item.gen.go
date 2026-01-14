@@ -31,8 +31,10 @@ func newSPictureBookItem(db *gorm.DB, opts ...gen.DOOption) sPictureBookItem {
 	_sPictureBookItem.Id = field.NewUint64(tableName, "id")
 	_sPictureBookItem.BookId = field.NewString(tableName, "book_id")
 	_sPictureBookItem.Pic = field.NewString(tableName, "pic")
+	_sPictureBookItem.BPic = field.NewString(tableName, "b_pic")
 	_sPictureBookItem.Audio = field.NewString(tableName, "audio")
 	_sPictureBookItem.Position = field.NewInt(tableName, "position")
+	_sPictureBookItem.Content = field.NewString(tableName, "content")
 	_sPictureBookItem.Status = field.NewString(tableName, "status")
 	_sPictureBookItem.CreatedAt = field.NewTime(tableName, "created_at")
 	_sPictureBookItem.UpdatedAt = field.NewTime(tableName, "updated_at")
@@ -49,8 +51,10 @@ type sPictureBookItem struct {
 	Id        field.Uint64 // 主键id
 	BookId    field.String // 绘本id
 	Pic       field.String // 绘本详情图
+	BPic      field.String // 绘本详情大图
 	Audio     field.String // 绘本详音频
 	Position  field.Int    // 排序位置
+	Content   field.String // 内容
 	Status    field.String // 状态,on启用,off禁用
 	CreatedAt field.Time   // 添加时间
 	UpdatedAt field.Time   // 更新时间
@@ -73,8 +77,10 @@ func (s *sPictureBookItem) updateTableName(table string) *sPictureBookItem {
 	s.Id = field.NewUint64(table, "id")
 	s.BookId = field.NewString(table, "book_id")
 	s.Pic = field.NewString(table, "pic")
+	s.BPic = field.NewString(table, "b_pic")
 	s.Audio = field.NewString(table, "audio")
 	s.Position = field.NewInt(table, "position")
+	s.Content = field.NewString(table, "content")
 	s.Status = field.NewString(table, "status")
 	s.CreatedAt = field.NewTime(table, "created_at")
 	s.UpdatedAt = field.NewTime(table, "updated_at")
@@ -94,12 +100,14 @@ func (s *sPictureBookItem) GetFieldByName(fieldName string) (field.OrderExpr, bo
 }
 
 func (s *sPictureBookItem) fillFieldMap() {
-	s.fieldMap = make(map[string]field.Expr, 8)
+	s.fieldMap = make(map[string]field.Expr, 10)
 	s.fieldMap["id"] = s.Id
 	s.fieldMap["book_id"] = s.BookId
 	s.fieldMap["pic"] = s.Pic
+	s.fieldMap["b_pic"] = s.BPic
 	s.fieldMap["audio"] = s.Audio
 	s.fieldMap["position"] = s.Position
+	s.fieldMap["content"] = s.Content
 	s.fieldMap["status"] = s.Status
 	s.fieldMap["created_at"] = s.CreatedAt
 	s.fieldMap["updated_at"] = s.UpdatedAt
