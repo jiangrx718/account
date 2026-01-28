@@ -1,0 +1,11 @@
+debug: true
+log:
+  development: true
+  level: debug
+  outputs:
+    - stdout
+    - ./logs/api.log
+mysql:
+  dsn: root:123456@tcp(127.0.0.1:3306)/account?charset=utf8mb4&parseTime=true&loc=Local&timeout=5s&readTimeout=6s
+redis:
+  dsn: redis://:123456@127.0.0.1:6379/0
